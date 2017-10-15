@@ -6,7 +6,7 @@ export interface Link {
   index: LinkIndex;
   isListed?: boolean;
   isNavigable?: boolean;
-  isDisabled?: boolean;
+  isVisible?: boolean;
   isComplete?: boolean;
   children?: Array<Link>;
 }

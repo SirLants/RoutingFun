@@ -3,7 +3,8 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule } from '@angular/material';
+  MatCardModule,
+  MatTabsModule } from '@angular/material';
 
 import { NgModule } from '@angular/core';
 
@@ -13,12 +14,14 @@ import { NgModule } from '@angular/core';
    MatMenuModule,
    MatToolbarModule,
    MatIconModule,
-   MatCardModule],
+   MatCardModule,
+   MatTabsModule],
  exports: [
    MatButtonModule,
    MatMenuModule,
    MatToolbarModule,
    MatIconModule,
-   MatCardModule]
+   MatCardModule,
+   MatTabsModule]
 })
 export class MaterialModule { }
