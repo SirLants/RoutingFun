@@ -18,7 +18,7 @@ export class NavigationService implements OnInit {
   }
 
   ngOnInit() {
-    // This wouldn't necessarily be the best place to do this
+    // This wouldn't necessarily be the best place to do this, we'd like manually re-trigger routeStatus updates
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.routeState.activeIndex = this.calculateActive();
@@ -82,7 +82,7 @@ export class NavigationService implements OnInit {
     }
   }
 
-  // Beyon
+  // This obviously needs to be updated and re-calc'ed still
   private initializeLinks() {
     this.routeState.links = [
       {
