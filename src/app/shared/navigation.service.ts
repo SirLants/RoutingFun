@@ -16,19 +16,22 @@ export class NavigationService implements OnInit {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.routeState.activeIndex = this.calculateActive();
-        this.routeState.nextRoute = this.calculateNext();
-        this.routeState.previousRoute = this.calculatePrevious();
-        this.pushRouteState(this.routeState);
+        this.updateRouteState(this.routeState);
       }
     });
   }
 
   ngOnInit() {
-    // This wouldn't necessarily be the best place to do this, we'd like manually re-trigger routeStatus updates
   }
 
   public pushRouteState(routeState: RouteState) {
+    this.routeStateSubject.next(routeState);
+  }
+
+  public updateRouteState(routeState: RouteState) {
+    this.routeState.activeIndex = this.calculateActive();
+    this.routeState.nextRoute = this.calculateNext();
+    this.routeState.previousRoute = this.calculatePrevious();
     this.routeStateSubject.next(routeState);
   }
 
@@ -63,7 +66,7 @@ export class NavigationService implements OnInit {
     // If there isn't a remaining incomplete route go to an absolute path
     } else {
       return this.routeState.links
-        .find(link => link.index === LinkIndex.Home).path;
+        .find(link => link.index === LinkIndex.Page1).path;
     }
   }
 
@@ -71,7 +74,7 @@ export class NavigationService implements OnInit {
     /* Basically make sure that the previous route is no longer disabled somehow before we go back to it.
     ** If so, go back more.
     */
-    let counter = this.routeState.activeIndex.valueOf();
+    let counter = this.routeState.activeIndex.valueOf() - 1;
     for (counter; counter >= 0; counter--) {
       if (this.routeState.links
         .some(link => link.index.valueOf() === counter && link.isVisible && link.isListed)
@@ -81,7 +84,7 @@ export class NavigationService implements OnInit {
     }
     if (counter === -1) {
       return this.routeState.links
-        .find(link => link.index === LinkIndex.Home).path;
+        .find(link => link.index === LinkIndex.Page5).path;
     }
   }
 

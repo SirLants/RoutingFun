@@ -33,3 +33,8 @@
 </nav>
 
 <router-outlet></router-outlet>
+
+<mat-card class="group">
+  <button mat-button [routerLink]="routeState.previousRoute">Previous</button>
+  <button mat-button [routerLink]="routeState.nextRoute">Next</button>
+</mat-card>

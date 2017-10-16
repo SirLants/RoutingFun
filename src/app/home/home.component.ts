@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   public update() {
-    this.navigationService.pushRouteState(this.routeState);
+    this.navigationService.updateRouteState(this.routeState);
   }
 
 }
