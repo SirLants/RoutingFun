@@ -1,6 +1,30 @@
+<mat-card class="group">
+  <mat-card style="width: 10%; display: inline-block; margin: 3px;"
+    *ngFor="let link of routeState.links"
+  >
+    <mat-card-header>
+      {{link.label}}
+    </mat-card-header>
+    <mat-card-actions>
+      <mat-checkbox [(ngModel)]="link.isListed" (ngModelChange)="update()">
+        Is Listed?
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="link.isNavigable" (ngModelChange)="update()">
+        Is Navigable?
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="link.isVisible" (ngModelChange)="update()">
+        Is Visible?
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="link.isComplete" (ngModelChange)="update()">
+        Is Complete?
+      </mat-checkbox>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>
+
 <nav mat-tab-nav-bar>
   <a mat-tab-link
-     *ngFor="let link of activeLinks; let i = index;"
+     *ngFor="let link of activeLinks;"
      [routerLink]="link.path"
      routerLinkActive #rla="routerLinkActive"
      [active]="routeState.activeIndex === link.index">

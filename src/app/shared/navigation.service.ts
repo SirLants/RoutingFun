@@ -9,7 +9,7 @@ import { RouteState } from './../../types/route-state.type';
 
 @Injectable()
 export class NavigationService implements OnInit {
-  private routeStateSubject = new BehaviorSubject<RouteState>(this.initializeLinks());
+  private routeStateSubject = new BehaviorSubject<RouteState>(this.initializeRouteState());
 
   private routeState: RouteState;
 
@@ -79,10 +79,14 @@ export class NavigationService implements OnInit {
         return this.routeState.links.find(link => link.index.valueOf() === counter).path;
       }
     }
+    if (counter === -1) {
+      return this.routeState.links
+        .find(link => link.index === LinkIndex.Home).path;
+    }
   }
 
   // This obviously needs to be updated and re-calc'ed still
-  private initializeLinks(): RouteState {
+  private initializeRouteState(): RouteState {
     this.routeState = {
       activeIndex: -1,
       nextRoute: '',
